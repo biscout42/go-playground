@@ -3,6 +3,7 @@ package util
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
 var mu sync.Mutex
@@ -16,5 +17,6 @@ func Foo(name string) {
 		m.Unlock()
 	}(&mu)
 	count = count + 1
+	time.Sleep(5 * time.Second)
 	fmt.Printf("### Mutex locked. count=[%d] %s \n", count, name)
 }
